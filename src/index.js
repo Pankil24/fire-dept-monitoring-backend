@@ -1,6 +1,8 @@
 const express = require("express");
 require("dotenv").config();
 console.log("JWT_SECRET_KEY:", process.env.JWT_SECRET_KEY);
+const path = require("path");
+
 
 const sequelize = require("./config/database");
 const authRoutes = require("./routes/EndUser/auth.js");
@@ -14,6 +16,7 @@ app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static("uploads"));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // Use Routes
 app.use("/api/auth", authRoutes);

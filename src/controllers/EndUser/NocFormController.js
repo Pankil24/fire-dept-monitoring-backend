@@ -11,6 +11,8 @@ const submitNocForm = async (req, res) => {
       buildingHeight,
     } = req.body;
 
+    const baseUrl = `${req.protocol}://${req.get("host")}/uploads/`;
+
     const newForm = await NocForm.create({
       businessName,
       businessAddress,
@@ -18,12 +20,12 @@ const submitNocForm = async (req, res) => {
       contactNumber,
       email,
       buildingHeight,
-      approvalLetter: req.files["approvalLetter"] ? req.files["approvalLetter"][0].path : null,
-      buildingPlan: req.files["buildingPlan"] ? req.files["buildingPlan"][0].path : null,
-      firePlans: req.files["firePlans"] ? req.files["firePlans"][0].path : null,
-      ownershipDocument: req.files["ownershipDocument"] ? req.files["ownershipDocument"][0].path : null,
-      fireConsultantCertificate: req.files["fireConsultantCertificate"] ? req.files["fireConsultantCertificate"][0].path : null,
-      checklist: req.files["checklist"] ? req.files["checklist"][0].path : null,
+      approvalLetter: req.files["approvalLetter"] ? baseUrl + req.files["approvalLetter"][0].filename : null,
+      buildingPlan: req.files["buildingPlan"] ? baseUrl + req.files["buildingPlan"][0].filename : null,
+      firePlans: req.files["firePlans"] ? baseUrl + req.files["firePlans"][0].filename : null,
+      ownershipDocument: req.files["ownershipDocument"] ? baseUrl + req.files["ownershipDocument"][0].filename : null,
+      fireConsultantCertificate: req.files["fireConsultantCertificate"] ? baseUrl + req.files["fireConsultantCertificate"][0].filename : null,
+      checklist: req.files["checklist"] ? baseUrl + req.files["checklist"][0].filename : null,
     });
 
     res.status(201).json({ message: "NOC Application Submitted", data: newForm });
