@@ -7,6 +7,10 @@ const User = sequelize.define("User", {
     autoIncrement: true,
     primaryKey: true,
   },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -19,6 +23,14 @@ const User = sequelize.define("User", {
   role: {
     type: DataTypes.ENUM("Admin", "Inspector", "Fire Officer", "Business Owner"),
     allowNull: false,
+  },
+  phoneNo: {
+    type: DataTypes.INTEGER,
+    allowNull: false, 
+  },
+  address: {
+    type: DataTypes.STRING,
+    allowNull: false, 
   },
 });
 

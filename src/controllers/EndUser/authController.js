@@ -6,18 +6,38 @@ const { USER_NOT_FOUND } = require("../../helpers/error.js");
 // Register User
 const userRegistration = async (req, res) => {
   try {
-    const { email, password, role } = req.body;
-    if (!email || !password || !role) 
+    const { name, email, password, role, phoneNo, address } = req.body;
+
+    // Validate that all fields are provided
+    if (!name || !email || !password || !role || !phoneNo || !address) 
       return res.status(400).json({ message: "All fields are required" });
 
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await User.create({ email, password: hashedPassword, role });
+    // Ensure phoneNo is a valid number (assuming we want numeric phoneNo)
+    if (isNaN(phoneNo)) 
+      return res.status(400).json({ message: "Phone number must be numeric" });
 
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create the user with provided details
+    const user = await User.create({
+      name,
+      email,
+      password: hashedPassword,
+      role,
+      phoneNo,
+      address,
+    });
+
+    // Respond with success message and user data
     res.status(201).json({ message: "User registered successfully", user });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
+
+module.exports = { userRegistration };
+
 
 // Login User
 const userLogin = async (req, res, next) => {

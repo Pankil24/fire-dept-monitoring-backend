@@ -8,7 +8,7 @@ const NocForm = sequelize.define("NocForm", {
   ownerName: { type: DataTypes.STRING, allowNull: false },
   contactNumber: { type: DataTypes.STRING, allowNull: false },
   email: { type: DataTypes.STRING, allowNull: false },
-  buildingHeight: { type: DataTypes.STRING, allowNull: false },
+  buildingHeight: { type: DataTypes.INTEGER, allowNull: false },
   approvalLetter: { type: DataTypes.STRING }, // File Path
   buildingPlan: { type: DataTypes.STRING }, // File Path
   firePlans: { type: DataTypes.STRING }, // File Path
