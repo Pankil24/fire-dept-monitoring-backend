@@ -6,7 +6,7 @@ const checkUserAuth = (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
 
   if (!token) {
-    return res.status(401).json({ msg: "Access denied - No token provided" });
+    return res.status(401).json({ message: "Access denied - No token provided" });
   }
 
   try {
@@ -17,7 +17,7 @@ const checkUserAuth = (req, res, next) => {
     next();
   } catch (error) {
     console.error("JWT Verification Error:", error.message);
-    return res.status(400).json({ msg: "Invalid token" });
+    return res.status(400).json({ message: "Invalid token" });
   }
 };
 

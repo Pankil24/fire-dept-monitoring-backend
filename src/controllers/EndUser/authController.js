@@ -8,12 +8,12 @@ const userRegistration = async (req, res) => {
   try {
     const { email, password, role } = req.body;
     if (!email || !password || !role) 
-      return res.status(400).json({ msg: "All fields are required" });
+      return res.status(400).json({ message: "All fields are required" });
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({ email, password: hashedPassword, role });
 
-    res.status(201).json({ msg: "User registered successfully", user });
+    res.status(201).json({ message: "User registered successfully", user });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -65,7 +65,7 @@ const userLogin = async (req, res, next) => {
 //         const user = await User.findByPk(req.user.id);
 //         console.log(" i am here", req.user , user)
   
-//       if (!user) return res.status(404).json({ msg: "User not found" });
+//       if (!user) return res.status(404).json({ message: "User not found" });
   
 //       res.json(user);
 //     } catch (error) {
@@ -81,7 +81,7 @@ const changeUserPassword = async (req, res) => {
 
     await User.update({ password: hashedPassword }, { where: { id: req.user.id } });
 
-    res.json({ msg: "Password changed successfully" });
+    res.json({ message: "Password changed successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -89,12 +89,12 @@ const changeUserPassword = async (req, res) => {
 
 // Send Reset Password Email (Dummy Response for Now)
 const sendPasswordResetEmail = async (req, res) => {
-  res.json({ msg: "Password reset email sent (dummy response)" });
+  res.json({ message: "Password reset email sent (dummy response)" });
 };
 
 // Reset User Password (Dummy Implementation)
 const resetUserPassword = async (req, res) => {
-  res.json({ msg: "Password has been reset successfully (dummy response)" });
+  res.json({ message: "Password has been reset successfully (dummy response)" });
 };
 
 module.exports = {

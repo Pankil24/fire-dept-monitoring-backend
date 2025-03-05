@@ -10,12 +10,12 @@ const adminRegister = async (req, res) => {
         
         const { name, email, password } = req.body;
         if (!name || !email || !password) {
-            return res.status(400).json({ msg: "All fields (name, email, password) are required" });
+            return res.status(400).json({ message: "All fields (name, email, password) are required" });
         }
         console.log("here");
         const existingAdmin = await Admin.findOne({ where: { email } });
         if (existingAdmin) {
-            return res.status(400).json({ msg: "Admin with this email already exists" });
+            return res.status(400).json({ message: "Admin with this email already exists" });
         }
         
 console.log("here");
@@ -23,7 +23,7 @@ console.log("here");
         const hashedPassword = await bcrypt.hash(password, 10);
         const admin = await Admin.create({ name, email, password: hashedPassword });
 
-        res.status(201).json({ msg: "Admin registered successfully", admin });
+        res.status(201).json({ message: "Admin registered successfully", admin });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
