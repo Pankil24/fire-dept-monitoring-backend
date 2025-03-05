@@ -22,7 +22,7 @@ const Admin = sequelize.define("Admin", {
   }
 }, {
   tableName: "Admin",  
-  timestamps: false
+  timestamps: true
 });
 
 module.exports = Admin;
