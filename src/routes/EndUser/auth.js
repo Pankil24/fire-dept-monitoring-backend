@@ -7,8 +7,8 @@ const {
   // getLoggedUser,
   sendPasswordResetEmail,
   resetUserPassword,
-} = require("../controllers/authController.js");
-const checkUserAuth = require("../middleware/authmiddleware.js");
+} = require("../../controllers/EndUser/authController.js");
+const checkUserAuth = require("../../middleware/EndUserMiddleware/authmiddleware.js");
 
 // Public Routes
 router.post("/register", userRegistration);

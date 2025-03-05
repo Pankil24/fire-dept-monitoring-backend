@@ -1,8 +1,11 @@
 const express = require("express");
 require("dotenv").config();
 console.log("JWT_SECRET_KEY:", process.env.JWT_SECRET_KEY);
+
 const sequelize = require("./config/database");
-const authRoutes = require("./routes/auth.js");
+const authRoutes = require("./routes/EndUser/auth.js");
+const adminRoutes = require("./routes/Admin/adminroute.js");
+
 
 const app = express();
 app.use(express.json());
@@ -10,6 +13,8 @@ app.use(express.json());
 
 // Use Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/admin", adminRoutes);
+
 
 // Sync Database
 sequelize.sync({ force: false })
