@@ -9,6 +9,9 @@ const authRoutes = require("./routes/EndUser/auth.js");
 const adminRoutes = require("./routes/Admin/adminroute.js");
 const nocRoutes = require("./routes/EndUser/NocRoutes.js");
 const nocAdminRoute = require("./routes/Admin/NocAdminRoutes.js");
+const dashboardRoutes = require("./routes/Admin/admindashboardroute.js");
+const notificationRoutes = require("./routes/Admin/NotificationRoutes.js");
+
 const cors = require("cors")
 
 const app = express();
@@ -23,6 +26,9 @@ app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/noc", nocRoutes);
 app.use("/api", nocAdminRoute)
+app.use("/api/dashboard", dashboardRoutes);
+app.use("/notifications", notificationRoutes);
+
 
 // Sync Database
 sequelize.sync({ force: false })
