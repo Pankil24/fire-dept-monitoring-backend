@@ -5,7 +5,7 @@ console.log("JWT_SECRET_KEY:", process.env.JWT_SECRET_KEY);
 const sequelize = require("./config/database");
 const authRoutes = require("./routes/EndUser/auth.js");
 const adminRoutes = require("./routes/Admin/adminroute.js");
-
+const cors = require("cors")
 
 const app = express();
 app.use(cors())
