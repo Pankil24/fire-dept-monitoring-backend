@@ -3,13 +3,13 @@ require("dotenv").config();
 console.log("JWT_SECRET_KEY:", process.env.JWT_SECRET_KEY);
 const path = require("path");
 
-
 const sequelize = require("./config/database");
 const authRoutes = require("./routes/EndUser/auth.js");
 const adminRoutes = require("./routes/Admin/adminroute.js");
 const nocRoutes = require("./routes/EndUser/NocRoutes.js");
 const nocAdminRoute = require("./routes/Admin/NocAdminRoutes.js");
 const dashboardRoutes = require("./routes/Admin/admindashboardroute.js");
+const userRoutes = require("./routes/EndUser/auth.js");
 const notificationRoutes = require("./routes/Admin/NotificationRoutes.js");
 
 const cors = require("cors")
@@ -28,6 +28,8 @@ app.use("/noc", nocRoutes);
 app.use("/api", nocAdminRoute)
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/notifications", notificationRoutes);
+app.use("/api", userRoutes);  
+
 
 
 // Sync Database

@@ -4,7 +4,7 @@ const {
   userRegistration,
   userLogin,
   changeUserPassword,
-  // getLoggedUser,
+  getAllUsers ,
   sendPasswordResetEmail,
   resetUserPassword,
 } = require("../../controllers/EndUser/authController.js");
@@ -18,6 +18,6 @@ router.post("/reset-password/:id/:token", resetUserPassword);
 
 // Protected Routes (Require Authentication)
 router.post("/change-password", checkUserAuth, changeUserPassword);
-// router.get("/me", checkUserAuth, getLoggedUser);
+router.get("/users", getAllUsers );
 
 module.exports = router;

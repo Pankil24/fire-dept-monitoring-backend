@@ -76,19 +76,22 @@ const userLogin = async (req, res, next) => {
         res.status(500).json({ status: "failed", message: "Unable to login" });
     }
 };
+
 // Get Authenticated User
-// const getLoggedUser = async (req, res) => {
-//     try {
-//         const user = await User.findByPk(req.user.id);
-//         console.log(" i am here", req.user , user)
-  
-//       if (!user) return res.status(404).json({ message: "User not found" });
-  
-//       res.json(user);
-//     } catch (error) {
-//       res.status(500).json({ error: error.message });
-//     }
-//   };
+const getAllUsers = async (req, res) => {
+  try { 
+    
+    const users = await User.findAll(); 
+
+    if (!users.length) {
+      return res.status(404).json({ message: "No users found" });
+    }
+
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 // Change User Password
 const changeUserPassword = async (req, res) => {
@@ -118,7 +121,7 @@ module.exports = {
   userRegistration,
   userLogin,
   changeUserPassword,
-//   getLoggedUser,
+  getAllUsers ,
   sendPasswordResetEmail,
   resetUserPassword,
 };
