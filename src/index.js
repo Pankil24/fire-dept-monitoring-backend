@@ -8,6 +8,7 @@ const adminRoutes = require("./routes/Admin/adminroute.js");
 
 
 const app = express();
+app.use(cors())
 app.use(express.json());
 
 
