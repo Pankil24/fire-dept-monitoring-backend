@@ -26,7 +26,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/noc", nocRoutes);
 app.use("/api", nocAdminRoute)
-app.use("/api/dashboard", dashboardRoutes);
+app.use("/api", dashboardRoutes);
 app.use("/notifications", notificationRoutes);
 app.use("/api", userRoutes);  
 
