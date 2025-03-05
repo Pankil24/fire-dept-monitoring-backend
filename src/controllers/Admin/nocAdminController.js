@@ -30,5 +30,13 @@ const updateNocStatus = async (req, res) => {
     }
   };
   
-  module.exports = { updateNocStatus };
+  const getAllNocForms = async (req, res) => {
+    try {
+      const nocForms = await NocForm.findAll(); // Fetch all NOC applications
+      res.status(200).json({ data: nocForms });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  };
+  module.exports = { updateNocStatus,getAllNocForms };
   
