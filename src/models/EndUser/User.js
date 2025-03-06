@@ -25,13 +25,18 @@ const User = sequelize.define("User", {
     allowNull: false,
   },
   phoneNo: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING, // Changed from INTEGER to STRING (phone numbers may start with 0)
     allowNull: false, 
   },
   address: {
     type: DataTypes.STRING,
     allowNull: false, 
   },
+  telegramChatId: {
+    type: DataTypes.STRING,
+    allowNull: true, // Allow null initially (users might not have interacted with the bot)
+    unique: true,
+  }
 });
 
 module.exports = User;

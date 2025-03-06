@@ -3,14 +3,16 @@ require("dotenv").config();
 console.log("JWT_SECRET_KEY:", process.env.JWT_SECRET_KEY);
 const path = require("path");
 
-const sequelize = require("./config/database");
-const authRoutes = require("./routes/EndUser/auth.js");
-const adminRoutes = require("./routes/Admin/adminroute.js");
-const nocRoutes = require("./routes/EndUser/NocRoutes.js");
-const nocAdminRoute = require("./routes/Admin/NocAdminRoutes.js");
-const dashboardRoutes = require("./routes/Admin/admindashboardroute.js");
-const userRoutes = require("./routes/EndUser/auth.js");
-const notificationRoutes = require("./routes/Admin/NotificationRoutes.js");
+const sequelize = require("./src/config/database.js");
+const authRoutes = require("./src/routes/EndUser/auth.js");
+const adminRoutes = require("./src/routes/Admin/adminroute.js");
+const nocRoutes = require("./src/routes/EndUser/NocRoutes.js");
+const nocAdminRoute = require("./src/routes/Admin/NocAdminRoutes.js");
+const dashboardRoutes = require("./src/routes/Admin/admindashboardroute.js");
+const userRoutes = require("./src/routes/EndUser/auth.js");
+const notificationRoutes = require("./src/routes/Admin/NotificationRoutes.js");
+const telegramRoutes = require("./src/routes/Admin/telegramRoute.js");
+
 
 const cors = require("cors")
 
@@ -30,11 +32,11 @@ app.use("/api", dashboardRoutes);
 app.use("/notifications", notificationRoutes);
 app.use("/api", userRoutes);  
 
-
+app.use("/api/telegram", telegramRoutes);
 
 // Sync Database
 sequelize.sync({ force: false })
   .then(() => console.log("✅ Database synced"))
   .catch(err => console.error("❌ Error syncing database:", err));
 
-app.listen(5000, () => console.log("🚀 Server running on port 5000"));
+app.listen(5001, () => console.log("🚀 Server running on port 5000"));
