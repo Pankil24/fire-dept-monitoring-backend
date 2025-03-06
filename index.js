@@ -39,4 +39,4 @@ sequelize.sync({ force: false })
   .then(() => console.log("✅ Database synced"))
   .catch(err => console.error("❌ Error syncing database:", err));
 
-app.listen(5001, () => console.log("🚀 Server running on port 5000"));
+app.listen(5002, () => console.log("🚀 Server running on port 5002"));

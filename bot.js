@@ -9,7 +9,7 @@ const bot = new TelegramBot(token, { polling: true });
 // Handle messages
 bot.on("message", (msg) => {
     const chatId = msg.chat.id;
-    bot.sendMessage(chatId, `Hello ${msg.from.first_name}, how can I assist you with NOC Submission?`);
+    bot.sendMessage(chatId, `Hello ${msg.from.first_name}, pankil how can I assist you with NOC Submission?`);
 });
 
 console.log("Bot is running...");

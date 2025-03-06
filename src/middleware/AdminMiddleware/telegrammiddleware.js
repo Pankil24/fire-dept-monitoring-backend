@@ -1,15 +1,25 @@
-const TelegramBot = require("node-telegram-bot-api");
-require("dotenv").config();
+const TelegramBot = require('node-telegram-bot-api')
+require('dotenv').config()
 
-// Initialize Telegram Bot
-const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: true });
+const bot = new TelegramBot(process.env.TELEGRAM_BOT_TOKEN, { polling: true })
 
-console.log("Telegram Bot is running...");
+console.log('Telegram Bot is running...')
 
-// Capture user chat IDs when they start the bot
-bot.on("message", (msg) => {
-    console.log(`User Chat ID: ${msg.chat.id}`);
-    bot.sendMessage(msg.chat.id, "Hello! I will notify you about your NOC updates.");
-});
+// Replace this with the actual chat ID of the user
+const chatId = '6596332485' // <-- Replace this with the real chat ID
 
-module.exports = bot;
+// Function to send a message anytime
+function sendMessage(message) {
+  bot
+    .sendMessage(chatId, message)
+    .then(() => console.log('Message sent successfully!'))
+    .catch((err) => console.error('Error sending message:', err))
+}
+
+// Example: Send a message after 10 seconds
+// setTimeout(() => {
+//   sendMessage('🚀 Your NOC has been updated! Check it now.')
+// }, 10000)
+
+// Export the function for external use
+module.exports = { bot, sendMessage }
